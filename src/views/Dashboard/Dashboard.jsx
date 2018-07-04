@@ -4,7 +4,16 @@ import { Grid, Row, Col } from "react-bootstrap";
 import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
-import {Graph} from "../../components/Graph";
+import {Graph} from "../../components/Graph.js";
+import HeatMap from "../../components/HeatMap.jsx"
+
+
+import Header from "components/Header/Header";
+import Footer from "components/Footer/Footer";
+import {Select} from "../../components/Neighbourhood/Select";
+import { style } from "variables/Variables.jsx";
+
+import dashboardRoutes from "routes/dashboard.jsx";
 import {
   dataPie,
   legendPie,
@@ -21,6 +30,12 @@ import {MostPopular} from "../../components/SeatUsage/MostPopular";
 import {LeastPopular} from "../../components/SeatUsage/LeastPopular";
 
 
+const xLabels = new Array(12).fill(0).map((_, i) => `${i+1}`);
+const yLabels = ['',''];
+const data = new Array(yLabels.length)
+    .fill(0)
+    .map(() => new Array(xLabels.length).fill(0).map(() => Math.floor(Math.random() * 100)));
+
 class Dashboard extends Component {
   createLegend(json) {
     var legend = [];
@@ -34,6 +49,10 @@ class Dashboard extends Component {
   }
   render() {
     return (
+        <div ref="mainPanel">
+            <Header {...this.props} />
+            <h2 style={{textAlign:'center'}}>Choice Seating Utilization Metrics</h2>
+            <Select/>
       <div className="content">
         <Grid fluid>
           <Row>
@@ -149,8 +168,25 @@ class Dashboard extends Component {
               />
             </Col>
           </Row>
+            <Row>
+                <Col md={12}>
+                    <Card
+                        title="Neighbourhood Seat Map"
+                        category="24 seats"
+                        content={
+                            <HeatMap
+                                xLabels={xLabels}
+                                yLabels={yLabels}
+                                data={data}
+                            />
+                        }
+                    />
+                </Col>
+            </Row>
         </Grid>
       </div>
+            <Footer />
+        </div>
     );
   }
 }
