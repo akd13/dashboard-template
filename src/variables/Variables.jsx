@@ -474,11 +474,12 @@ const iconsArray = [
 //
 // Data for Pie Chart
 var dataPie = {
-  labels: ["40%", "20%", "40%"],
-  series: [40, 20, 40]
+  labels: ["49%", "40%", "11%"],
+  series: [49, 40, 11]
 };
+
 var legendPie = {
-  names: ["Open", "Bounce", "Unsubscribe"],
+  names: ["Team 1", "Team 2", "Unoccupied"],
   types: ["info", "danger", "warning"]
 };
 
@@ -486,25 +487,20 @@ var legendPie = {
 var dataSales = {
   labels: [
     "9:00AM",
-    "12:00AM",
+    "12:00PM",
     "3:00PM",
     "6:00PM",
-    "9:00PM",
-    "12:00PM",
-    "3:00AM",
-    "6:00AM"
   ],
   series: [
-    [287, 385, 490, 492, 554, 586, 698, 695],
-    [67, 152, 143, 240, 287, 335, 435, 437],
-    [23, 113, 67, 108, 190, 239, 307, 308]
+    [89, 40, 78, 17],
+    [90, 20, 83, 13],
   ]
 };
 var optionsSales = {
   low: 0,
-  high: 800,
+  high: 100,
   showArea: false,
-  height: "245px",
+  height: "205px",
   axisX: {
     showGrid: false
   },
@@ -528,9 +524,9 @@ var responsiveSales = [
     }
   ]
 ];
-var legendSales = {
-  names: ["Open", "Click", "Click Second Time"],
-  types: ["info", "danger", "warning"]
+var legendOccupancy = {
+  names: ["Team 1", "Team 2"],
+  types: ["info", "danger"]
 };
 
 // Data for Bar Chart
@@ -567,7 +563,7 @@ var responsiveBar = [
   ]
 ];
 var legendBar = {
-  names: ["Seats"],
+  names: ["No. of Seats"],
   types: ["info"]
 };
 
@@ -580,8 +576,7 @@ module.exports = {
   legendPie,
   dataSales,
   optionsSales,
-  responsiveSales,
-  legendSales,
+  responsiveSales, legendOccupancy,
   dataBar,
   optionsBar,
   responsiveBar,
