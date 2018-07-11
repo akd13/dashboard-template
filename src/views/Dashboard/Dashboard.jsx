@@ -13,9 +13,8 @@ import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import {Select} from "../../components/Neighbourhood/Select";
 import { style } from "variables/Variables.jsx";
-import { bar_data, pie_data } from "variables/mockData.js";
+import { bar_data, pie_data, neighbourhood_1_occupancy,neighbourhood_1_percentage_occupancy,neighbourhood_1_change } from "variables/mockData.js";
 
-import dashboardRoutes from "routes/dashboard.jsx";
 import {
   dataPie,
   legendPie,
@@ -32,11 +31,12 @@ import {MostPopular} from "../../components/SeatUsage/MostPopular";
 import {LeastPopular} from "../../components/SeatUsage/LeastPopular";
 
 
-const yLabels = new Array(12).fill(0).map((_, i) => `${i+1}`);
-const xLabels = ['A','B','C','D'];
-const data = new Array(yLabels.length)
+const yLabels_1 = new Array(10).fill(0).map((_, i) => `${i+1}`);
+const xLabels_1 = [' ',' '];
+const data_1 = new Array(yLabels_1.length)
     .fill(0)
-    .map(() => new Array(xLabels.length).fill(0).map(() => Math.floor(Math.random() * 100)));
+    .map(() => new Array(xLabels_1.length).fill(0).map(() => Math.floor(Math.random() * 100)));
+
 
 class Dashboard extends Component {
   state = {
@@ -64,6 +64,10 @@ class Dashboard extends Component {
   }
 
   render() {
+      let date_value;
+      this.state.date===1 ? date_value = '7 days':date_value = '30 days'
+
+
     return (
         <div ref="mainPanel">
             <Header {...this.props} />
@@ -85,7 +89,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-user text-success" />}
                 statsText="Average Occupancy"
-                statsValue="17.7"
+                statsValue={neighbourhood_1_occupancy[this.state.date-1]}
                 // statsIcon={<i className="fa fa-calendar-o" />}
                 // statsIconText="Last day"
               />
@@ -93,8 +97,8 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-add-user" />}
-                statsText="Percentage"
-                statsValue="88.5%"
+                statsText="Percentage Occupancy"
+                statsValue={neighbourhood_1_percentage_occupancy[this.state.date-1]}
                 // statsIcon={<i className="fa fa-clock-o" />}
                 // statsIconText="In the last hour"
               />
@@ -102,8 +106,8 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-refresh-2" />}
-                statsText="Change"
-                statsValue="-0.8%"
+                statsText={"Change over "+ date_value}
+                statsValue={neighbourhood_1_change[this.state.date-1]}
                 // statsIcon={<i className="fa fa-refresh" />}
                 // statsIconText="Updated now"
               />
@@ -117,7 +121,7 @@ class Dashboard extends Component {
                         category="Neighbourhood 1"
                         content={
                           <div>
-                            <Graph data={bar_data[this.state.team]}/>
+                            <Graph data={bar_data[this.state.date]}/>
                           </div>
                         }
                         legend={
@@ -143,7 +147,7 @@ class Dashboard extends Component {
                       category="Neighbourhood 1"
                       content={
                           <div >
-                                  <MostPopular />
+                                  <MostPopular date={this.state.date}/>
                           </div>
                       }
                   />
@@ -154,7 +158,7 @@ class Dashboard extends Component {
                       category="Neighbourhood 1"
                       content={
                           <div>
-                                  <LeastPopular />
+                                  <LeastPopular date={this.state.date} />
                           </div>
                       }
                   />
@@ -169,7 +173,7 @@ class Dashboard extends Component {
                 content={
                   <div className="ct-chart">
                     <ChartistGraph
-                      data={dataSales}
+                      data={dataSales[this.state.date-1]}
                       type="Line"
                       options={optionsSales}
                       responsiveOptions={responsiveSales}
@@ -186,14 +190,16 @@ class Dashboard extends Component {
                 <Col md={12}>
                     <Card
                         title="Neighbourhood Seat Map"
-                        category="24 seats"
+                        category="20 seats"
                         content={
-                            <HeatMap
-                                xLabels={xLabels}
-                                yLabels={yLabels}
-                                data={data}
-                            />
-                        }
+                        <div>
+                            <div className='float-left'>
+                        <HeatMap
+                                xLabels={xLabels_1}
+                                yLabels={yLabels_1}
+                                data={data_1} />
+                            </div>
+                        </div> }
                     />
                 </Col>
             </Row>

@@ -24,13 +24,13 @@ const DataGrid = ({
           </FixedBox>
           {xLabels.map((x, xi) => (
             <div
-              title={`${data[yi][xi]}` + ' ' + unit}
+              title={`${data[yi][xi]}` + '%' + unit}
               key={`${x}_${y}`}
               style={{
                 background,
                 margin: '10px 10px 0 0',
-                height,
-                flex: 1,
+                'height':'30px',
+                  'width': '70px',
                 opacity: (data[yi][xi] - min) / (max - min) || 0,
               }}
             >

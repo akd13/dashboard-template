@@ -1,4 +1,4 @@
-var team_1_bar_data = [
+var neighbourhood_1_bar_data_week = [
   {Day: 'Mon',  Seats: 9},
   {Day: 'Tue',  Seats: 10},
   {Day: 'Wed',  Seats: 11},
@@ -6,7 +6,7 @@ var team_1_bar_data = [
   {Day: 'Fri',  Seats: 7},
 ];
 
-var team_2_bar_data = [
+var neighbourhood_1_bar_data_month = [
   {Day: 'Mon',  Seats: 13},
   {Day: 'Tue',  Seats: 12},
   {Day: 'Wed',  Seats: 18},
@@ -14,31 +14,34 @@ var team_2_bar_data = [
   {Day: 'Fri',  Seats: 10},
 ];
 
-var team_3_bar_data = [
-  {Day: 'Mon',  Seats: 9},
-  {Day: 'Tue',  Seats: 4},
-  {Day: 'Wed',  Seats: 6},
-  {Day: 'Thu',  Seats: 8},
-  {Day: 'Fri',  Seats: 5},
-];
-
 export var bar_data = {
-	1: team_1_bar_data,
-	2: team_2_bar_data,
-	3: team_3_bar_data,
+	1: neighbourhood_1_bar_data_week,
+	2: neighbourhood_1_bar_data_month,
 }
+export var neighbourhood_1_occupancy = [
+    "17.7",
+    "16.5",
+]
+
+export var neighbourhood_1_percentage_occupancy = [
+    "88.5%",
+    "84.6%",
+]
+
+export var neighbourhood_1_change = [
+    "-0.8%",
+    "+2.3%",
+]
 
 var week_data = [
   {name: 'Team 1', value: 23},
   {name: 'Team 2', value: 34},
-  {name: 'Team 3', value: 25},
   {name: 'Unoccupied', value: 18},
 ]
 
 var month_data = [
   {name: 'Team 1', value: 26},
   {name: 'Team 2', value: 46},
-  {name: 'Team 3', value: 15},
   {name: 'Unoccupied', value: 13},
 ]
 

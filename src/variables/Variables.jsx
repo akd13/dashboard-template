@@ -484,18 +484,40 @@ var legendPie = {
 };
 
 // Data for Line Chart
-var dataSales = {
-  labels: [
-    "9:00AM",
-    "12:00PM",
-    "3:00PM",
-    "6:00PM",
-  ],
-  series: [
-    [89, 40, 78, 17],
-    [90, 20, 83, 13],
-  ]
+
+
+var dataSales_1 = {
+    labels: [
+        "9:00AM",
+        "12:00PM",
+        "3:00PM",
+        "6:00PM",
+    ],
+    series: [
+        [89, 40, 78, 17],
+        [90, 20, 83, 13],
+    ]
 };
+
+
+var dataSales_2 = {
+    labels: [
+        "9:00AM",
+        "12:00PM",
+        "3:00PM",
+        "6:00PM",
+    ],
+    series: [
+        [84, 30, 58, 10],
+        [85, 50, 33, 9],
+    ]
+};
+
+var dataSales = [
+    dataSales_1,
+    dataSales_2,
+];
+
 var optionsSales = {
   low: 0,
   high: 100,

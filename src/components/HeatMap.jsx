@@ -5,7 +5,7 @@ import DataGrid from './DataGrid';
 
 function HeatMap({xLabels, yLabels, data, background, height, xLabelWidth, yLabelTextAlign, unit}) {
   return (
-    <div>
+    <div className='seats'>
       <XLabels labels={xLabels} width={xLabelWidth} />
       <DataGrid
         {...{xLabels, yLabels, data, background, height, xLabelWidth, yLabelTextAlign, unit}}

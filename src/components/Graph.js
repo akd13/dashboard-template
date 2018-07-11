@@ -8,7 +8,7 @@ const colors = ["#1f77b4", "#ff7f0e", "#2ca02c",
 export const Graph = ({data}) => {
 
     return (
-        <div className='float-left box'>
+        <div className='box'>
             <BarChart width={450} height={300} data={data}
                       margin={{top: 30, right: 40, bottom: 5}}>
                 <XAxis dataKey="Day"/>
