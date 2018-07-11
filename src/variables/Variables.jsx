@@ -479,8 +479,8 @@ var dataPie = {
 };
 
 var legendPie = {
-  names: ["Team 1", "Team 2", "Unoccupied"],
-  types: ["info", "danger", "warning"]
+  names: ["Team 1", "Team 2", "Team 3", "Unoccupied"],
+  types: ["info", "danger", "success", "warning"]
 };
 
 // Data for Line Chart

@@ -6,12 +6,14 @@ import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import {Graph} from "../../components/Graph.js";
 import HeatMap from "../../components/HeatMap.jsx"
+import {TwoLevelPieChart} from "../../components/Pie.jsx"
 
 
 import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import {Select} from "../../components/Neighbourhood/Select";
 import { style } from "variables/Variables.jsx";
+import { bar_data, pie_data } from "variables/mockData.js";
 
 import dashboardRoutes from "routes/dashboard.jsx";
 import {
@@ -30,13 +32,18 @@ import {MostPopular} from "../../components/SeatUsage/MostPopular";
 import {LeastPopular} from "../../components/SeatUsage/LeastPopular";
 
 
-const xLabels = new Array(12).fill(0).map((_, i) => `${i+1}`);
-const yLabels = ['',''];
+const yLabels = new Array(12).fill(0).map((_, i) => `${i+1}`);
+const xLabels = ['A','B','C','D'];
 const data = new Array(yLabels.length)
     .fill(0)
     .map(() => new Array(xLabels.length).fill(0).map(() => Math.floor(Math.random() * 100)));
 
 class Dashboard extends Component {
+  state = {
+    team: 1,
+    date: 1,
+  }
+
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {
@@ -47,12 +54,21 @@ class Dashboard extends Component {
     }
     return legend;
   }
+
+  toggleTeam = (event) => {
+    this.setState({ team: event.target.value});
+  }
+
+  toggleDate = (event) => {
+    this.setState({ date: event.target.value});
+  }
+
   render() {
     return (
         <div ref="mainPanel">
             <Header {...this.props} />
             <h2 style={{textAlign:'center'}}>Choice Seating Utilization Metrics</h2>
-            <Select/>
+            <Select toggleTeam = {this.toggleTeam} toggleDate={this.toggleDate}/>
       <div className="content">
         <Grid fluid>
           <Row>
@@ -100,8 +116,9 @@ class Dashboard extends Component {
                         title="Seating Aggregate"
                         category="Neighbourhood 1"
                         content={
-                                <Graph/>
-
+                          <div>
+                            <Graph data={bar_data[this.state.team]}/>
+                          </div>
                         }
                         legend={
                             <div className="legend">{this.createLegend(legendBar)}</div>
@@ -113,11 +130,8 @@ class Dashboard extends Component {
                         title="Neighbourhood Usage Statistics"
                         content={
                             <div>
-                                <ChartistGraph data={dataPie} type="Pie" />
+                                <TwoLevelPieChart data={pie_data[this.state.date]}/>
                             </div>
-                        }
-                        legend={
-                            <div className="legend">{this.createLegend(legendPie)}</div>
                         }
                     />
                 </Col>
